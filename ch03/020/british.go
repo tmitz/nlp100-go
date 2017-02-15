@@ -1,22 +1,18 @@
-package main
+package british
 
-import (
-	"bufio"
-	"compress/gzip"
-	"encoding/json"
-	"fmt"
-	"io"
-	"os"
-	"strings"
-)
+import "os"
+import "compress/gzip"
+import "bufio"
+import "io"
+import "encoding/json"
+import "strings"
 
 type Page struct {
 	Title, Text string
 }
 
-func main() {
-	file := os.Args[1:]
-	f, err := os.Open(file[0])
+func Parse(file string) (body string) {
+	f, err := os.Open(file)
 	if err != nil {
 		panic(err)
 	}
@@ -38,10 +34,13 @@ func main() {
 			panic(err)
 		}
 		dec := json.NewDecoder(strings.NewReader(line))
-		dec.Decode(&p)
+		if err = dec.Decode(&p); err != nil {
+			panic(err)
+		}
 		if p.Title == "イギリス" {
-			fmt.Println(p.Text)
+			body = p.Text
 			break
 		}
 	}
+	return
 }
