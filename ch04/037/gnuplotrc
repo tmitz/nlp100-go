@@ -1,0 +1,3 @@
+set style fill solid border lc "black"
+set boxwidth 0.5
+plot "037.dat" using 0:2:xtic(1) with boxes lw 2 lc rgb "red" notitle

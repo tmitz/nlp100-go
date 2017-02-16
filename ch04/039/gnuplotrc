@@ -1,0 +1,4 @@
+set format y"10^{%L}"
+set format x"10^{%L}"
+set logscale xy
+plot "039.dat" using 1:2 with lines notitle

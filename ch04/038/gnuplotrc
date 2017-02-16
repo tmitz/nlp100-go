@@ -1,0 +1,2 @@
+set style fill solid border lc "red"
+plot "038.dat" using 0:2 with boxes lw 2 lc rgb "red" notitle
