@@ -7,11 +7,11 @@ import (
 	"strings"
 )
 
-type Morph struct {
+type Morph struct { // nolint
 	Surface, Base, Pos, Pos1 string
 }
 
-type Morphs []Morph
+type Morphs []Morph // nolint
 
 func main() {
 	file := os.Args[1:]
