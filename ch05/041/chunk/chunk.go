@@ -2,6 +2,7 @@ package chunk
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -32,6 +33,28 @@ func (c Chunk) String() string {
 
 func (c *Chunk) init() {
 	*c = Chunk{}
+}
+
+func (c *Chunk) Pair(sentence Sentence) string {
+	return fmt.Sprintf("%s\t%s", c, sentence[c.Dst])
+}
+
+func (c *Chunk) HasNoun() bool {
+	for _, morph := range c.Morphs {
+		if morph.Pos == "名詞" {
+			return true
+		}
+	}
+	return false
+}
+
+func (c *Chunk) HasVerb() bool {
+	for _, morph := range c.Morphs {
+		if morph.Pos == "動詞" {
+			return true
+		}
+	}
+	return false
 }
 
 type Sentence []Chunk // nolint
