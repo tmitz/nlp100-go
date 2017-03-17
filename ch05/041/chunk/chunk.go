@@ -57,6 +57,35 @@ func (c *Chunk) HasVerb() bool {
 	return false
 }
 
+func (c *Chunk) HasParticle() bool {
+	for _, morph := range c.Morphs {
+		if morph.Pos == "助詞" {
+			return true
+		}
+	}
+	return false
+}
+
+func (c *Chunk) LastParticle() Morph {
+	morphs := make(Morphs, 0)
+	for _, morph := range c.Morphs {
+		if morph.Pos == "助詞" {
+			morphs = append(morphs, morph)
+		}
+	}
+	return morphs[len(morphs)-1]
+}
+
+func (c *Chunk) FirstVerb() Morph {
+	morphs := make(Morphs, 0)
+	for _, morph := range c.Morphs {
+		if morph.Pos == "動詞" {
+			morphs = append(morphs, morph)
+		}
+	}
+	return morphs[0]
+}
+
 type Sentence []Chunk // nolint
 
 func (s *Sentence) Add(c Chunk) {
