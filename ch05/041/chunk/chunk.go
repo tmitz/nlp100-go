@@ -95,6 +95,17 @@ func (c *Chunk) FirstVerb() Morph {
 	return morphs[0]
 }
 
+func (c *Chunk) ReplaceNoun(alt string) {
+	morphs := make(Morphs, 0)
+	for _, morph := range c.Morphs {
+		if morph.Pos == "名詞" {
+			morph.Surface = alt
+		}
+		morphs = append(morphs, morph)
+	}
+	(*c).Morphs = morphs
+}
+
 type Sentence []Chunk // nolint
 
 func (s *Sentence) Add(c Chunk) {
