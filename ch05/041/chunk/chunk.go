@@ -66,6 +66,15 @@ func (c *Chunk) HasParticle() bool {
 	return false
 }
 
+func (c *Chunk) HasSahenConnectionNounPlusWo() bool {
+	for idx, morph := range c.Morphs {
+		if morph.Pos == "名詞" && morph.Pos1 == "サ変接続" && len(c.Morphs[idx:]) > 1 && c.Morphs[idx+1].Pos == "助詞" && c.Morphs[idx+1].Base == "を" {
+			return true
+		}
+	}
+	return false
+}
+
 func (c *Chunk) LastParticle() Morph {
 	morphs := make(Morphs, 0)
 	for _, morph := range c.Morphs {
