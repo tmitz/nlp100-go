@@ -19,6 +19,17 @@ type Chunk struct { // nolint
 	Srcs   int
 }
 
+func (c Chunk) String() string {
+	strs := make([]string, 0)
+	for _, m := range c.Morphs {
+		if m.Pos == "記号" {
+			continue
+		}
+		strs = append(strs, m.Surface)
+	}
+	return strings.Join(strs, "")
+}
+
 func (c *Chunk) init() {
 	*c = Chunk{}
 }
@@ -42,14 +53,6 @@ func (ss *Sentences) Add(s Sentence) {
 		*ss = append(*ss, s)
 	}
 }
-
-// func addChunk(chunk Chunk, chunks *Chunks) Chunks {
-// 	ch := *chunks
-// 	if len(chunk.Morphs) > 0 {
-// 		ch = append(ch, chunk)
-// 	}
-// 	return ch
-// }
 
 func List(file string) Sentences {
 	f, err := os.Open(file)
