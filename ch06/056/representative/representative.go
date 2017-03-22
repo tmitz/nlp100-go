@@ -5,10 +5,15 @@ import (
 	"strings"
 )
 
+type Governor struct {
+	Idx   int    `xml:"idx,attr"`
+	Value string `xml:",chardata"`
+}
+
 type Dep struct {
-	Type      string `xml:"type,attr"`
-	Governor  string `xml:"governor"`
-	Dependent string `xml:"dependent"`
+	Type      string   `xml:"type,attr"`
+	Governor  Governor `xml:"governor"`
+	Dependent string   `xml:"dependent"`
 }
 
 type Dependency struct {
