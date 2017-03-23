@@ -32,6 +32,7 @@ type Tokens struct {
 type Sentence struct {
 	Tokens       []Tokens     `xml:"tokens"`
 	Dependencies []Dependency `xml:"dependencies"`
+	Parse        string       `xml:"parse"`
 }
 
 type Sentences struct {
